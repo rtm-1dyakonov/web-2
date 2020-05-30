@@ -1,0 +1,73 @@
+CREATE TABLE Client (
+    ClientId INTEGER   NOT NULL
+                       PRIMARY KEY
+                       UNIQUE,
+    Name     TEXT (40) NOT NULL,
+    Login    TEXT (40) NOT NULL,
+    Password TEXT (40) NOT NULL
+);
+
+
+//---------------------------------------------------------------
+
+
+CREATE TABLE Car (
+    CarId        INTEGER   UNIQUE
+                           PRIMARY KEY
+                           NOT NULL,
+    Model        TEXT (40) NOT NULL,
+    Manufacturer TEXT (40) NOT NULL,
+    Price        DOUBLE    NOT NULL,
+    Count        INTEGER,
+    RentalId     INTEGER   REFERENCES Rental (RentalId) 
+);
+
+
+//---------------------------------------------------------------
+
+CREATE TABLE Rental (
+    RentalId INTEGER    UNIQUE
+                        PRIMARY KEY
+                        NOT NULL,
+    Point    TEXT (100) NOT NULL
+);
+
+//---------------------------------------------------------------
+
+CREATE TABLE ClientRental (
+    ClientId INTEGER NOT NULL
+                     REFERENCES Client (ClientId),
+    RentalId INTEGER REFERENCES Rental (RentalId) 
+                     NOT NULL
+);
+
+
+//---------------------------------------------------------------
+
+INSERT INTO Client (Name, Login, Password)
+VALUES('Виталий', 'Vitaman', 'some1116');
+INSERT INTO Client (Name, Login, Password)
+VALUES('Ольга', 'OlgaLogin', 'somePassword');
+INSERT INTO Client (Name, Login, Password)
+VALUES('Вероника', 'Nika', 'myFigure2803');
+
+//---------------------------------------------------------------
+
+INSERT INTO Rental (Point) VALUES ('ул. Косова, 89, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Косова, 89, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Лукашенка, 1, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Калины, 1020, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Маркаряна, 25,  Самара');
+INSERT INTO Rental (Point) VALUES ('ул. Питерсона, 3, Самара');
+INSERT INTO Rental (Point) VALUES ('ул. Чукотского, 78, Воронеж');
+INSERT INTO Rental (Point) VALUES ('ул. Сагайдачного, 17, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Якобсона, 8, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Леонтьева, 9, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Фираса, 12, Санкт-Петербург');
+INSERT INTO Rental (Point) VALUES ('ул. Купала, 600, Екатеринбург');
+INSERT INTO Rental (Point) VALUES ('ул. Михалкова, 4, Севастополь');
+INSERT INTO Rental (Point) VALUES ('ул. Зеленского, 5, Москва');
+INSERT INTO Rental (Point) VALUES ('ул. Путлера, 199, Уфа');
+
+//---------------------------------------------------------------
+
